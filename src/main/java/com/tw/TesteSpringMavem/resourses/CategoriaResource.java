@@ -16,32 +16,30 @@ import com.tw.TesteSpringMavem.services.CategoriaService;
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
-	
+
 	@Autowired /* pra nao precisar fazer injecao manual */
 	private CategoriaService categoriaService;
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		
-		Categoria categoria = categoriaService.getCategoriaById(id);
-		
-		//return ResponseEntity.ok(categoria);
-		return ResponseEntity.ok().body(categoria);
-		
-	}
-	
-	
 
-	@RequestMapping(value="/tw", method = RequestMethod.GET)
+		Categoria categoria = categoriaService.getCategoriaById(id);
+
+		// return ResponseEntity.ok(categoria);
+		return ResponseEntity.ok().body(categoria);
+
+	}
+
+	@RequestMapping(value = "/tw", method = RequestMethod.GET)
 	public List<Categoria> twListar() {
-		
+
 		Categoria cat1 = new Categoria(1, "Informatica");
 		Categoria cat2 = new Categoria(2, "Escritório");
-		
+
 		List<Categoria> lista = new ArrayList<>();
 		lista.add(cat1);
 		lista.add(cat2);
-		
+
 		return lista;
 	}
 }
