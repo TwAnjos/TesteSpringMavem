@@ -2,9 +2,6 @@ package com.tw.TesteSpringMavem.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,9 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Categoria implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,8 +21,8 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 
-	@ManyToMany(mappedBy = "categorias") // não precisa refazer todo o mapeamento aqui como em produtos, basta apontar
-											// que esse é o outro lado.
+	@JsonManagedReference //evita o problema de aninhamento, pq tem um objeto instanciado dentro do outro.
+	@ManyToMany(mappedBy = "categorias") // não precisa refazer todo o mapeamento aqui como em produtos, basta apontar que esse é o outro lado.
 	private List<Produto> produtos = new ArrayList<>();
 
 	public Categoria() {

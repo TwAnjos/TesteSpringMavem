@@ -11,9 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produto {
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +23,7 @@ public class Produto {
 	private String nome;
 	private Double preco;
 
-	//
+	@JsonBackReference //esse cara informa que do outro lado em categorias ja foi emitido o obj então não preciso mais mostrar.
 	@ManyToMany // essa tripa em baixo faz a relação de muitos para muitos na tabela
 	@JoinTable(name = "PRODUTO_CATEDORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private List<Categoria> categorias = new ArrayList<>();
