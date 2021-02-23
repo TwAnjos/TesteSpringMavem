@@ -9,8 +9,6 @@ import com.tw.TesteSpringMavem.domain.Categoria;
 import com.tw.TesteSpringMavem.repositories.CategoriaRepository;
 import com.tw.TesteSpringMavem.services.exceptions.ObjectNotFoundException;
 
-import net.bytebuddy.implementation.bytecode.Throw;
-
 @Service
 public class CategoriaService {
 
