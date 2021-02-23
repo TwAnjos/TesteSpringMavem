@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tw.TesteSpringMavem.enums.TipoCliente;
 
 @Entity
@@ -31,6 +32,7 @@ public class Cliente implements Serializable {
 									// getsSets
 
 	// cliente tem varios endereços
+	@JsonManagedReference //pode serializar os objetos do endereço
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 
